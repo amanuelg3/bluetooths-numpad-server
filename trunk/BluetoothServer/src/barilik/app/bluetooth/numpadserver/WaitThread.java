@@ -1,4 +1,6 @@
-package com.luugiathuy.apps.remotebluetooth;
+package barilik.app.bluetooth.numpadserver;
+
+import barilik.app.bluetooth.numpadserver.ProcessConnectionThread;
 
 import javax.bluetooth.DiscoveryAgent;
 import javax.bluetooth.LocalDevice;
@@ -9,7 +11,9 @@ import javax.microedition.io.StreamConnectionNotifier;
 
 public class WaitThread implements Runnable {
 
-    /** Constructor */
+    /**
+     * Constructor
+     */
     public WaitThread() {
     }
 
@@ -18,7 +22,9 @@ public class WaitThread implements Runnable {
         waitForConnection();
     }
 
-    /** Waiting for connection from devices */
+    /**
+     * Waiting for connection from devices
+     */
     private void waitForConnection() {
         // retrieve the local Bluetooth device object
         LocalDevice local = null;

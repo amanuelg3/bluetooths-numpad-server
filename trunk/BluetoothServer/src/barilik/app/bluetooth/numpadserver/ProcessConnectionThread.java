@@ -1,4 +1,4 @@
-package com.luugiathuy.apps.remotebluetooth;
+package barilik.app.bluetooth.numpadserver;
 
 import java.awt.Robot;
 import java.awt.Toolkit;
@@ -14,6 +14,7 @@ public class ProcessConnectionThread implements Runnable {
     private Robot robot;
     private Toolkit toolkit;
     private static ArrayList<Integer> allowedCommands = new ArrayList<Integer>(16);
+
     static {
         allowedCommands.add(new Integer(0x30));
         allowedCommands.add(new Integer(0x31));
@@ -65,10 +66,9 @@ public class ProcessConnectionThread implements Runnable {
     /**
      * Process the command from client
      *
-     * @param command
-     *            the command code
+     * @param command the command code
      */
-   private boolean processCommand(int command) {
+    private boolean processCommand(int command) {
         boolean running = false;
         try {
             if (allowedCommands.contains(new Integer(command))) {
