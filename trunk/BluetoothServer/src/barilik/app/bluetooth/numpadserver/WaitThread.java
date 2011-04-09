@@ -1,7 +1,5 @@
 package barilik.app.bluetooth.numpadserver;
 
-import barilik.app.bluetooth.numpadserver.ProcessConnectionThread;
-
 import javax.bluetooth.DiscoveryAgent;
 import javax.bluetooth.LocalDevice;
 import javax.bluetooth.UUID;
