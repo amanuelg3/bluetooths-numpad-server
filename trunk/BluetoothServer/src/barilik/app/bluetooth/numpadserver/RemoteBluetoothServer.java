@@ -8,6 +8,8 @@ import java.awt.event.ActionListener;
 public class RemoteBluetoothServer {
 
     public static void main(String[] args) throws Exception {
+        String textConectedInfo;
+
         if (!SystemTray.isSupported()) {
             System.out.println("SystemTray is not supported");
             return;
@@ -26,7 +28,12 @@ public class RemoteBluetoothServer {
             }
         });
         menu.add(closeItem);
-        TrayIcon icon = new TrayIcon(image, "Bluetooth NumPad Server", menu);
+        if (WaitThread.IS_ALIVE){
+            textConectedInfo = "Pripojený";
+        }else{
+            textConectedInfo = "Nepripojený";
+        }
+        TrayIcon icon = new TrayIcon(image, "Bluetooth NumPad Server\n"+"Status: "+textConectedInfo, menu);
         icon.setImageAutoSize(true);
         try {
             tray.add(icon);
