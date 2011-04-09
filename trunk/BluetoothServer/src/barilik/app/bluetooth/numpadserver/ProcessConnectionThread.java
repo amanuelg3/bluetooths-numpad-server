@@ -51,10 +51,12 @@ public class ProcessConnectionThread implements Runnable {
 
             boolean running = true;
 
+            WaitThread.IS_ALIVE = true;
             do {
                 command = inputStream.read();
                 running = processCommand(command);
             } while (running);
+            WaitThread.IS_ALIVE = false;
 
             System.out.println("Device disconneted");
 

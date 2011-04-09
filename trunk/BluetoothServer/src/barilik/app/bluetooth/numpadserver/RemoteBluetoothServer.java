@@ -2,10 +2,11 @@ package barilik.app.bluetooth.numpadserver;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
 public class RemoteBluetoothServer {
+
+    private static WaitThread mainThread;
 
     public static void main(String[] args) throws Exception {
         String textConectedInfo;
@@ -28,12 +29,9 @@ public class RemoteBluetoothServer {
             }
         });
         menu.add(closeItem);
-        if (WaitThread.IS_ALIVE){
-            textConectedInfo = "Pripojený";
-        }else{
-            textConectedInfo = "Nepripojený";
-        }
-        TrayIcon icon = new TrayIcon(image, "Bluetooth NumPad Server\n"+"Status: "+textConectedInfo, menu);
+        textConectedInfo = "Nepripojený";
+
+        final TrayIcon icon = new TrayIcon(image, "Bluetooth NumPad Server\n"+"Status: "+textConectedInfo, menu);
         icon.setImageAutoSize(true);
         try {
             tray.add(icon);
@@ -41,8 +39,26 @@ public class RemoteBluetoothServer {
             JOptionPane.showMessageDialog(null, "AWTException");
         }
 
+        icon.addMouseMotionListener(new MouseMotionListener() {
+            @Override
+            public void mouseDragged(MouseEvent e) {
+                setTooltipText();
+            }
 
-        Thread waitThread = new Thread(new WaitThread());
+            @Override
+            public void mouseMoved(MouseEvent e) {
+                setTooltipText();
+            }
+
+            private void setTooltipText() {
+                icon.setToolTip("Bluetooth NumPad Server\n"+"Status: " + (WaitThread.IS_ALIVE ? "Pripojený" : "Nepripojený"));
+            }
+        });
+
+        mainThread = new WaitThread();
+        Thread waitThread = new Thread(mainThread);
         waitThread.start();
     }
+
+
 }
