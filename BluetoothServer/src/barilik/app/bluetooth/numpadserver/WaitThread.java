@@ -50,15 +50,8 @@ public class WaitThread implements Runnable {
             try {
                 System.out.println("waiting for connection...");
                 connection = notifier.acceptAndOpen();
-
                 Thread processThread = new Thread(new ProcessConnectionThread(connection));
                 processThread.start();
-                if(processThread.isAlive()){
-                    IS_ALIVE = true;
-                }else{
-                    IS_ALIVE = false;
-                }
-
             } catch (Exception e) {
                 e.printStackTrace();
                 return;
