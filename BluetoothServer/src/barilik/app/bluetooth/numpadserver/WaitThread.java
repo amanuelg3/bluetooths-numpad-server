@@ -8,7 +8,7 @@ import javax.microedition.io.StreamConnection;
 import javax.microedition.io.StreamConnectionNotifier;
 
 public class WaitThread implements Runnable {
-
+    public static boolean IS_ALIVE = false;
     /**
      * Constructor
      */
@@ -53,6 +53,11 @@ public class WaitThread implements Runnable {
 
                 Thread processThread = new Thread(new ProcessConnectionThread(connection));
                 processThread.start();
+                if(processThread.isAlive()){
+                    IS_ALIVE = true;
+                }else{
+                    IS_ALIVE = false;
+                }
 
             } catch (Exception e) {
                 e.printStackTrace();
