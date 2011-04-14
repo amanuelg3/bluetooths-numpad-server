@@ -1,11 +1,14 @@
 package barilik.app.bluetooth.numpadserver;
 
+import java.io.IOException;
+import javax.bluetooth.BluetoothStateException;
 import javax.bluetooth.DiscoveryAgent;
 import javax.bluetooth.LocalDevice;
 import javax.bluetooth.UUID;
 import javax.microedition.io.Connector;
 import javax.microedition.io.StreamConnection;
 import javax.microedition.io.StreamConnectionNotifier;
+import javax.swing.JOptionPane;
 
 public class WaitThread implements Runnable {
     public static boolean IS_ALIVE = false;
@@ -40,7 +43,17 @@ public class WaitThread implements Runnable {
 
             String url = "btspp://localhost:" + uuid.toString() + ";name=RemoteBluetooth";
             notifier = (StreamConnectionNotifier) Connector.open(url);
-        } catch (Exception e) {
+        } catch (BluetoothStateException e) {
+            if(!local.isPowerOn()){
+                JOptionPane.showMessageDialog(null, e.getMessage()+"\n(Program sa ukončí)\n Tip: Zapni Bluetooth zariadenie");
+                System.exit(0);
+            }else {
+                JOptionPane.showMessageDialog(null, e.getMessage()+"\nProgram sa ukončí\n Tip: Nepodporované zariadenie Bluetooth");
+                System.exit(0);
+            }
+            e.printStackTrace();
+            return;
+        } catch (IOException e){
             e.printStackTrace();
             return;
         }
