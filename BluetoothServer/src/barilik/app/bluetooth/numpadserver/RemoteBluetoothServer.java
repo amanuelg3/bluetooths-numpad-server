@@ -3,6 +3,7 @@ package barilik.app.bluetooth.numpadserver;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import javax.swing.text.html.HTML;
 
 public class RemoteBluetoothServer {
 
@@ -22,13 +23,26 @@ public class RemoteBluetoothServer {
 
         PopupMenu menu = new PopupMenu();
 
+        MenuItem aboutItem = new MenuItem("O programe");
+        aboutItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "[Bluetooth Numpad Server]\n" +
+                                                    "    Verzia 1.0 beta\n" +
+                                                    "      Zdrojový kód:\n" +
+                                                    "    code.google.com\n" +
+                                                    "       Kontakt: \n" +
+                                                    "     Martin Barilík\n" );
+            }
+        });
         MenuItem closeItem = new MenuItem("Ukončiť");
         closeItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);
             }
         });
+        menu.add(aboutItem);
         menu.add(closeItem);
+        
         textConectedInfo = "Nepripojený";
 
         final TrayIcon icon = new TrayIcon(image, "Bluetooth NumPad Server\n"+"Status: "+textConectedInfo, menu);
