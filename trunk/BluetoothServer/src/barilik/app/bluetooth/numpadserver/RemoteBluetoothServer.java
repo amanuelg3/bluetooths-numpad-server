@@ -37,7 +37,12 @@ public class RemoteBluetoothServer {
         MenuItem closeItem = new MenuItem("Ukončiť");
         closeItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                System.exit(0);
+                if (mainThread.IS_ALIVE){
+                    System.exit(0);
+                }else{
+                    JOptionPane.showMessageDialog(null, "Musíš najprv odpojiť zariadenie");
+                }
+                
             }
         });
         menu.add(aboutItem);
