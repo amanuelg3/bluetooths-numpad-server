@@ -2,8 +2,10 @@ package barilik.app.bluetooth.numpadserver;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
-import javax.swing.text.html.HTML;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
 
 public class RemoteBluetoothServer {
 
@@ -37,7 +39,7 @@ public class RemoteBluetoothServer {
         MenuItem closeItem = new MenuItem("Ukončiť");
         closeItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if (mainThread.IS_ALIVE){
+                if (!mainThread.IS_ALIVE){
                     System.exit(0);
                 }else{
                     JOptionPane.showMessageDialog(null, "Musíš najprv odpojiť zariadenie");

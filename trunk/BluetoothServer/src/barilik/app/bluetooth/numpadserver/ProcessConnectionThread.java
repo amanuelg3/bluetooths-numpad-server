@@ -1,12 +1,10 @@
 package barilik.app.bluetooth.numpadserver;
 
-import java.awt.Robot;
-import java.awt.Toolkit;
+import javax.microedition.io.StreamConnection;
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.io.InputStream;
 import java.util.ArrayList;
-
-import javax.microedition.io.StreamConnection;
 
 public class ProcessConnectionThread implements Runnable {
 
@@ -34,6 +32,7 @@ public class ProcessConnectionThread implements Runnable {
         allowedCommands.add(new Integer('\n'));
         allowedCommands.add(new Integer(0x2E));
         allowedCommands.add(new Integer(0x90));
+        allowedCommands.add(new Integer('\b'));
     }
 
     public ProcessConnectionThread(StreamConnection connection) {
