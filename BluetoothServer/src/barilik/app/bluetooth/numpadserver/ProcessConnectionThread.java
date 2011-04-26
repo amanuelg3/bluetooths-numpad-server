@@ -12,6 +12,7 @@ public class ProcessConnectionThread implements Runnable {
     private Robot robot;
     private Toolkit toolkit;
     private static ArrayList<Integer> allowedCommands = new ArrayList<Integer>(16);
+    public static boolean I_AM_ALIVE = false;
 
     static {
         allowedCommands.add(new Integer(0x30));
@@ -43,6 +44,7 @@ public class ProcessConnectionThread implements Runnable {
     public void run() {
         try {
             InputStream inputStream = mConnection.openInputStream();
+            I_AM_ALIVE = true;
             System.out.println("waiting for input");
             robot = new Robot();
             toolkit = Toolkit.getDefaultToolkit();
@@ -56,6 +58,7 @@ public class ProcessConnectionThread implements Runnable {
                 running = processCommand(command);
             } while (running);
             WaitThread.IS_ALIVE = false;
+            I_AM_ALIVE = false;
 
             System.out.println("Device disconneted");
 

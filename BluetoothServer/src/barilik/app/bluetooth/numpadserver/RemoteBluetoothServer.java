@@ -25,26 +25,26 @@ public class RemoteBluetoothServer {
 
         PopupMenu menu = new PopupMenu();
 
+
         MenuItem aboutItem = new MenuItem("O programe");
         aboutItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(null, "[Bluetooth Numpad Server]\n" +
-                                                    "    Verzia 1.0 beta\n" +
-                                                    "      Zdrojový kód:\n" +
-                                                    "    code.google.com\n" +
-                                                    "       Kontakt: \n" +
-                                                    "     Martin Barilík\n" );
+                                                    "Verzia 1.0 beta\n" +
+                                                    "Zdrojový kód: " +
+                                                    "<html>http://www.google.sk\n" +
+                                                    "Kontakt:" +
+                                                    "martin.barilik@student.tuke.sk\n" );
             }
         });
         MenuItem closeItem = new MenuItem("Ukončiť");
         closeItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if (!mainThread.IS_ALIVE){
-                    System.exit(0);
-                }else{
+                if (ProcessConnectionThread.I_AM_ALIVE){
                     JOptionPane.showMessageDialog(null, "Musíš najprv odpojiť zariadenie");
-                }
-                
+                }else{
+                    System.exit(0);
+                }               
             }
         });
         menu.add(aboutItem);
