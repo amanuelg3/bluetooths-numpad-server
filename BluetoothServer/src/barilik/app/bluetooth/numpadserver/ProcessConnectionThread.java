@@ -15,25 +15,24 @@ public class ProcessConnectionThread implements Runnable {
     public static boolean I_AM_ALIVE = false;
 
     static {
-        allowedCommands.add(new Integer(0x30));
-        allowedCommands.add(new Integer(0x31));
-        allowedCommands.add(new Integer(0x32));
-        allowedCommands.add(new Integer(0x33));
-        allowedCommands.add(new Integer(0x34));
-        allowedCommands.add(new Integer(0x35));
-        allowedCommands.add(new Integer(0x36));
-        allowedCommands.add(new Integer(0x37));
-        allowedCommands.add(new Integer(0x38));
-        allowedCommands.add(new Integer(0x39));
-        allowedCommands.add(new Integer(0x6A));
-        allowedCommands.add(new Integer(0x2D));
+        allowedCommands.add(new Integer(0x60));
+        allowedCommands.add(new Integer(0x61));
+        allowedCommands.add(new Integer(0x62));
+        allowedCommands.add(new Integer(0x63));
+        allowedCommands.add(new Integer(0x64));
+        allowedCommands.add(new Integer(0x65));
+        allowedCommands.add(new Integer(0x66));
+        allowedCommands.add(new Integer(0x67));
+        allowedCommands.add(new Integer(0x68));
+        allowedCommands.add(new Integer(0x69));
         allowedCommands.add(new Integer(0x6B));
+        allowedCommands.add(new Integer(0x6D));
+        allowedCommands.add(new Integer(0x6A));
         allowedCommands.add(new Integer(0x6F));
-        allowedCommands.add(new Integer(0x7F));
-        allowedCommands.add(new Integer('\n'));
-        allowedCommands.add(new Integer(0x2E));
         allowedCommands.add(new Integer(0x90));
         allowedCommands.add(new Integer('\b'));
+        allowedCommands.add(new Integer('\n'));
+        allowedCommands.add(new Integer(0x6C));
     }
 
     public ProcessConnectionThread(StreamConnection connection) {
