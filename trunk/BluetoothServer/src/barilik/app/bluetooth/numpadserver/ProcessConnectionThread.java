@@ -2,7 +2,6 @@ package barilik.app.bluetooth.numpadserver;
 
 import javax.microedition.io.StreamConnection;
 import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.io.InputStream;
 import java.util.ArrayList;
 
@@ -29,7 +28,7 @@ public class ProcessConnectionThread implements Runnable {
         allowedCommands.add(new Integer(0x6D));
         allowedCommands.add(new Integer(0x6A));
         allowedCommands.add(new Integer(0x6F));
-        allowedCommands.add(new Integer(0x90));
+        allowedCommands.add(new Integer(0x7F));
         allowedCommands.add(new Integer('\b'));
         allowedCommands.add(new Integer('\n'));
         allowedCommands.add(new Integer(0x2E));
@@ -75,12 +74,7 @@ public class ProcessConnectionThread implements Runnable {
         boolean running = false;
         try {
             if (allowedCommands.contains(new Integer(command))) {
-                if (command == KeyEvent.VK_NUM_LOCK) {
-                    boolean newState = !toolkit.getLockingKeyState(KeyEvent.VK_NUM_LOCK);
-                    toolkit.setLockingKeyState(KeyEvent.VK_NUM_LOCK, newState);
-                } else {
-                    robot.keyPress(command);
-                }
+                robot.keyPress(command);
                 running = true;
             }
         } catch (Exception e) {
