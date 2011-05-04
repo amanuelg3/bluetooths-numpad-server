@@ -32,7 +32,7 @@ public class ProcessConnectionThread implements Runnable {
         allowedCommands.add(new Integer(0x90));
         allowedCommands.add(new Integer('\b'));
         allowedCommands.add(new Integer('\n'));
-        allowedCommands.add(new Integer(0x6C));
+        allowedCommands.add(new Integer(0x2E));
     }
 
     public ProcessConnectionThread(StreamConnection connection) {
