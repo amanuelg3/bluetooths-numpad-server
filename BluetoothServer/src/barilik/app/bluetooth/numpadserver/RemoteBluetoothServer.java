@@ -8,10 +8,9 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 
 public class RemoteBluetoothServer {
-
     private static WaitThread mainThread;
 
-    public static void main(String[] args) throws Exception {
+    public RemoteBluetoothServer() {
         String textConectedInfo;
 
         if (!SystemTray.isSupported()) {
@@ -21,7 +20,7 @@ public class RemoteBluetoothServer {
 
         SystemTray tray = SystemTray.getSystemTray();
         Toolkit toolkit = Toolkit.getDefaultToolkit();
-        Image image = toolkit.getImage("bluetooth_logo.png");
+        Image image = toolkit.getImage(getClass().getResource("/bluetooth_logo.png"));
 
         PopupMenu menu = new PopupMenu();
 
@@ -30,29 +29,29 @@ public class RemoteBluetoothServer {
         aboutItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(null, "[Bluetooth Numpad Server]\n" +
-                                                    "Verzia 1.0 beta\n" +
-                                                    "Zdrojový kód: " +
-                                                    "<html>http://www.google.sk\n" +
-                                                    "Kontakt:" +
-                                                    "martin.barilik@student.tuke.sk\n" );
+                        "Verzia 1.0 beta\n" +
+                        "Zdrojový kód: " +
+                        "<html>http://www.google.sk\n" +
+                        "Kontakt:" +
+                        "martin.barilik@student.tuke.sk\n");
             }
         });
         MenuItem closeItem = new MenuItem("Ukončiť");
         closeItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if (ProcessConnectionThread.I_AM_ALIVE){
+                if (ProcessConnectionThread.I_AM_ALIVE) {
                     JOptionPane.showMessageDialog(null, "Musíš najprv odpojiť zariadenie");
-                }else{
+                } else {
                     System.exit(0);
-                }               
+                }
             }
         });
         menu.add(aboutItem);
         menu.add(closeItem);
-        
+
         textConectedInfo = "Nepripojený";
 
-        final TrayIcon icon = new TrayIcon(image, "Bluetooth NumPad Server\n"+"Status: "+textConectedInfo, menu);
+        final TrayIcon icon = new TrayIcon(image, "Bluetooth NumPad Server\n" + "Status: " + textConectedInfo, menu);
         icon.setImageAutoSize(true);
         try {
             tray.add(icon);
@@ -72,7 +71,7 @@ public class RemoteBluetoothServer {
             }
 
             private void setTooltipText() {
-                icon.setToolTip("Bluetooth NumPad Server\n"+"Status: " + (WaitThread.IS_ALIVE ? "Pripojený" : "Nepripojený"));
+                icon.setToolTip("Bluetooth NumPad Server\n" + "Status: " + (WaitThread.IS_ALIVE ? "Pripojený" : "Nepripojený"));
             }
         });
 
@@ -81,5 +80,7 @@ public class RemoteBluetoothServer {
         waitThread.start();
     }
 
-
+    public static void main(String[] args) throws Exception {
+        new RemoteBluetoothServer();
+    }
 }
