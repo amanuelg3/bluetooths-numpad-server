@@ -31,7 +31,7 @@ public class RemoteBluetoothServer {
                 JOptionPane.showMessageDialog(null, "[Bluetooth Numpad Server]\n" +
                         "Verzia 1.0 beta\n" +
                         "Zdrojový kód: " +
-                        "<html>http://www.google.sk\n" +
+                        "http://code.google.com/p/bluetooths-numpad-server/\n" +
                         "Kontakt:" +
                         "martin.barilik@student.tuke.sk\n");
             }
